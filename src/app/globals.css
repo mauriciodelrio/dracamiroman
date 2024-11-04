@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --fontColor1: #76febf; 
+  --fontColor2: #4bdac4;
+  --fontColor3: #1cffca;
+  --fontColor4: #217c8d;
+  --fontColor5: #268d9f; 
+  --fontBlack: #1e1e1e;
+  --base1: #e6fcf1;
+  --base2: #c9f6ef;
+  --base3: #d3f0ff; 
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: "Open-Sans", sans-serif;
+}
+
+h1{
+  color: var(--fontColor3);
+}
+
+h3 {
+  color: var(--fontColor2)
+}
