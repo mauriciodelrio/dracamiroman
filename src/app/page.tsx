@@ -16,6 +16,7 @@ import { MdOutlineMenu } from "react-icons/md";
 const Map = ({ lat, lng }: { lat: number; lng: number }) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY || '', // Asegúrate de configurar tu API Key en el archivo .env.local
+    id: "2e14543296cad6fb",
   });
 
   const center = useMemo(() => ({ lat, lng }), [lat, lng]);
