@@ -8,31 +8,9 @@ import { FaTooth } from "react-icons/fa";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { CiMail } from "react-icons/ci";
-import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
-import { useMemo } from "react";
+import {APIProvider, Map, Marker} from '@vis.gl/react-google-maps';
 import { MdOutlineMenu } from "react-icons/md";
 
-
-const Map = ({ lat, lng }: { lat: number; lng: number }) => {
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY || '', // Asegúrate de configurar tu API Key en el archivo .env.local
-    id: "2e14543296cad6fb",
-  });
-
-  const center = useMemo(() => ({ lat, lng }), [lat, lng]);
-
-  if (!isLoaded) return <p>Cargando mapa...</p>;
-
-  return (
-    <GoogleMap
-      zoom={15} // Ajusta el nivel de zoom según sea necesario
-      center={center}
-      mapContainerStyle={{ width: "100%", height: "400px" }}
-    >
-      <Marker position={center} />
-    </GoogleMap>
-  );
-};
 
 export default function Home() {
 
@@ -41,7 +19,6 @@ export default function Home() {
     ref.current?.scrollIntoView({behavior: 'smooth'});
     setIsOpen(false);
   };
-
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -249,16 +226,66 @@ export default function Home() {
             <h2 className="text-4xl font-bold mb-8 w-full text-center text-[var(--fontBlack)]"> Ubicación </h2>
             <div className="sm:w-2/3"> 
               <h3 className="w- full text-center text-xl font-semibold mb-4 text-[var(--fontBlack)]"> <span className="text-[var(--fontColor5)]">Dentaesthetic La Reina: </span> Av. Echeñique 5839 Of. 416</h3>
-              <Map lat={-33.445343123583434} lng={-70.57070653116264} />
+              {
+                process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY && (
+                  <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}>
+                    <Map
+                      defaultCenter={{lat: -33.445343123583434, lng: -70.57070653116264}}
+                      className="w-full h-96"
+                      defaultZoom={16}
+                      gestureHandling={'greedy'}
+                      disableDefaultUI={true}
+                      // point
+
+                    >
+                      <Marker position={{lat: -33.445343123583434, lng: -70.57070653116264}}/>
+                    </Map>
+                  </APIProvider>
+                )
+              }
             </div>
             <div className="sm:w-2/3 mt-6"> 
               <h3 className="w- full text-center text-xl font-semibold mb-4 text-[var(--fontBlack)]"> <span className="text-[var(--fontColor5)]">Clínica Campeny - Atención Particular </span> Dr. Manuel Barros Borgoño 71 Of. 502 </h3>
-              <Map lat={-33.42943020303719} lng={-70.6191043599986} />
-            </div>
+              {
+                process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY && (
+                  <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}>
+                    <Map
+                      defaultCenter={{lat: -33.42943020303719, lng: -70.6191043599986}}
+                      className="w-full h-96"
+                      defaultZoom={16}
+                      gestureHandling={'greedy'}
+                      disableDefaultUI={true}
+                      // point
+
+                    >
+                      <Marker position={{lat: -33.42943020303719, lng: -70.6191043599986}}/>
+                    </Map>
+                  </APIProvider>
+                )
+              }
+{/*               <Map lat={-33.42943020303719} lng={-70.6191043599986} />
+ */}            </div>
             <div className="sm:w-2/3 mt-6"> 
               <h3 className="w- full text-center text-xl font-semibold mb-4 text-[var(--fontBlack)]"> <span className="text-[var(--fontColor5)]">Dentaesthetic La Florida: </span> Av. Vicuña Mackenna Poniente 7255 Edificio Bellavista Of. 514</h3>
-              <Map lat={-33.52090817094136} lng={-70.60167405809595} />
-            </div> 
+              {
+                process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY && (
+                  <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}>
+                    <Map
+                      defaultCenter={{lat: -33.52090817094136, lng: -70.60167405809595}}
+                      className="w-full h-96"
+                      defaultZoom={16}
+                      gestureHandling={'greedy'}
+                      disableDefaultUI={true}
+                      // point
+
+                    >
+                      <Marker position={{lat: -33.52090817094136, lng: -70.60167405809595}}/>
+                    </Map>
+                  </APIProvider>
+                )
+              }
+{/*               <Map lat={-33.52090817094136} lng={-70.60167405809595} />
+ */}            </div> 
           </div>
 
           
